@@ -4,6 +4,11 @@ import './App.css';
 
 import {Link, Route, Redirect} from 'react-router-dom';
 import Switch from 'react-router-dom/Switch';
+import Slider from 'react-slick';
+
+import youtubeVideoService from './youtubeVideoService';
+
+youtubeVideoService.request();
 
 const HeaderLink = ( {text, route} ) => {
   return (
@@ -38,17 +43,30 @@ class Music extends Component {
     )
   }
 }
-class Video extends Component {
+
+class YouTubeVideo extends Component {
   render() {
+    var videoSrc = "https://www.youtube.com/embed/" + 
+        this.props.video + "?autoplay=" + 
+        this.props.autoplay + "&rel=" + 
+        this.props.rel + "&modestbranding=" +
+        this.props.modest;
     return (
-      <div>Video</div>
-    )
+      <div className="youtube-container">
+        <iframe title={this.props.video} className="youtube-player" type="text/html" width="100%" height="100%" src={videoSrc} frameBorder="0"/>
+      </div>
+    );
   }
 }
+
 class Shows extends Component {
   render() {
     return (
-      <div>Shows</div>
+      <div>
+        <span>
+          Shows
+        </span>
+      </div>
     )
   }
 }
@@ -71,6 +89,45 @@ class Album extends Component {
   }
 }
 
+class Video extends Component {
+  render() {
+    return (
+      <YouTubeSlider />
+    )
+  }
+}
+
+class YouTubeSlider extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+    return (
+      <Slider {...settings}>
+        <div>
+          <YouTubeVideo video="Nmr5qejhPf0" autoplay="0" rel="0" modest="1"/>
+        </div>
+        <div>
+          <YouTubeVideo video="5d0c6dSXV0c" autoplay="0" rel="0" modest="1"/>
+        </div>
+        <div>
+          <YouTubeVideo video="u4v-oPgylCc" autoplay="0" rel="0" modest="1"/>
+        </div>
+        <div>
+          <YouTubeVideo video="a8W0jR0M9tw" autoplay="0" rel="0" modest="1"/>
+        </div>
+      </Slider>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -87,11 +144,11 @@ class App extends Component {
         </header>
         <div className="body-container">
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route path="/music" component={Music} />
             <Route path="/album" component={Album} />
             <Route path="/video" component={Video} />
             <Route path="/shows" component={Shows} />
-            <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
         </div>
