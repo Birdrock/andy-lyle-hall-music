@@ -7,16 +7,17 @@ const getVideos = () => {
 const videoService = {
     cache: null,
     request: () => {
-        if (this.cache == null) {
-            getVideos()
+        if (!this.cache) {
+            return getVideos()
             .then(res => {
-                this.cache = res.data && res.data.videos;
+                this.cache = [...(res.data && res.data.videos)];
+                return this.cache;
             })
-            .catch(() => {
-                console.warn('Error fetching video manifest');
+            .catch((e) => {
+                return Promise.reject(e);;
             })
         } else {
-            return this.cache;
+            return Promise.resolve(this.cache);
         }
     }
 }

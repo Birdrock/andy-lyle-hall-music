@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: rgba(20, 17, 17, 0.8);
+  background-color: rgba(114, 114, 114, 0.719);
   height: 40px;
   padding: 20px;
   color: white;
@@ -19,13 +19,19 @@
 }
 
 .body-container {
-  background: rgba(20, 17, 17, 0.8);
+  background: rgba(114, 114, 114, 0.719);
   padding: 25px;
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 65%;
   border-radius: 15px;
+}
+
+@media (max-width: 812px) {
+  .body-container {
+    width: 90%;
+  }
 }
 
 .andy-lyle-hall {
