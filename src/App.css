@@ -18,7 +18,7 @@
   font-size: 1.5em;
 }
 
-.body-container {
+#body-container {
   background: rgba(114, 114, 114, 0.719);
   padding: 25px;
   margin-top: 5%;
@@ -26,12 +26,6 @@
   margin-right: auto;
   width: 65%;
   border-radius: 15px;
-}
-
-@media (max-width: 812px) {
-  .body-container {
-    width: 90%;
-  }
 }
 
 .andy-lyle-hall {
@@ -59,7 +53,7 @@
   text-decoration: none;
 }
 
-.header-link-container {
+#header-link-container {
   float: right;
 }
 
@@ -77,4 +71,23 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+#slideout-button {
+  float: right;
+  display: none;
+}
+
+@media (max-width: 812px) {
+  .body-container {
+    width: 90%;
+  }
+
+  #header-link-container {
+    display: none;
+  }
+
+  #slideout-button {
+    display: inherit;
+  }
 }

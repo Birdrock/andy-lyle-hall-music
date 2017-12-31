@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -78,13 +80,33 @@ class Video extends Component {
   }
 }
 
+class ToggleVisibilityButton extends Component {
+  constructor(props) {
+    super(props)
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  toggleVisibility() {
+    console.log("SDFLDSFKJ   ", this.props.toggleElem);
+    // let elem = document.getElementById(this.props.toggleElem);
+    $(`#${this.props.toggleElem}`).toggle();
+  }
+
+  render() {
+    return (
+      <div id="slideout-button" onClick={this.toggleVisibility}>{this.props.text}</div>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
         <div className="andy-lyle-hall"><span>Andy Lyle Hall</span></div>
-        <div className="header-link-container">
+        <ToggleVisibilityButton id="slideout-button" toggleElem="header-link-container" text="Toggle Menu" />
+        <div id="header-link-container">
           <HeaderLink text={"Home"} route={"/"} />
           <HeaderLink text={"Album"} route={"/album"} />
           <HeaderLink text={"Music"} route={"/music"} />
@@ -92,7 +114,7 @@ class App extends Component {
           <HeaderLink text={"Shows"} route={"/shows"} />
         </div>
         </header>
-        <div className="body-container">
+        <div id="body-container">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/music" component={Music} />
